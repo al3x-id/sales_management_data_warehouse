@@ -19,7 +19,7 @@ The goal is to build a scalable, structured system for data ingestion, transform
 ## Data Architecture
 
 The data architecture for this project follows three Architectural Layers **Raw**, **Staging**, and **Modelling** layers
-![Data Architecture](docs/data_architecture.png)
+![Data Architecture](docs/data_architechture.png)
 
 1. **Raw Layer**: Stores raw data as-is from the source systems. Data is ingested from CSV Files into SQL Server Database.
 2. **Staging Layer**: This layer includes data cleansing, standardization, and normalization processes to prepare data for analysis.
@@ -65,7 +65,7 @@ The data architecture for this project follows three Architectural Layers **Raw*
 
 **Schema Name:** [stg_sales_management](scripts/staging/)
 
-## ⚙️ ETL Pipeline (Stored Procedure)
+## ETL Pipeline (Stored Procedure)
 
 A single stored procedure automates ETL flow:
 
@@ -81,7 +81,8 @@ CALL stg_load_stp();
 | Standardization | Ensured consistent naming for cities, states, and stores |
 | Data validation | Used QA queries to verify record counts and duplicates |
 
-**Data Quality Checks: [Staging Quality Check](tests/stg_quality_check.sql)**
+**Data Quality Checks:**
+[Staging Quality Check](tests/stg_quality_check.sql)
 - Null or duplicate primary keys (for composite keys, checks both columns together).
 - Compare raw table records counts with staging table records counts
 - Allows up to 5% variance (marked as WARNING if exceeded)
@@ -93,12 +94,12 @@ CALL stg_load_stp();
 
 **Schema Name:** [dw_sales_management](scripts/modelling/)
 
-**Data modell:**
-![Data Model](docs/data_model.png)
+**Data flow:**
+![Data Model](docs/data_flow.png)
 
 
 **Star Schema Tables:**
-#### 🧭 Dimensions:
+#### Dimensions:
 ```
 
 dim_customers
@@ -109,7 +110,7 @@ dim_dates
 
 ```
 
-#### 📊 Facts:
+#### Facts:
 ```
 
 fact_sales
@@ -118,14 +119,14 @@ fact_inventory
 ````
 
 **Derived Columns:**
-| Table | Derived Field | Formula |
-|--------|----------------|----------|
+| Table          | Derived Field     |
+|----------------|-------------------|
 | fact_sales     | `total_amount`    |
 | fact_inventory | `last_updated`    |
 
 ---
 
-## ⚙️ ETL Pipeline (Stored Procedure)
+## ETL Pipeline (Stored Procedure)
 
 A single stored procedure automates ETL flow:
 
@@ -142,7 +143,8 @@ CALL dw_load_stp();
 
 ---
 
-## Data Quality checks: [Modelling Quality Check](tests/dw_quality_check.sql)
+## Data Quality checks: 
+[Modelling Quality Check](tests/dw_quality_check.sql)
 - Uniqueness of surrogate keys in dimension tables.
 - Referential integrity between fact and dimension tables.
 - Validation of relationships in the data model for analytical purposes.
@@ -235,5 +237,3 @@ CALL dw_load_stp();
 * Real-world project experience in data engineering workflow.
 
 
-Would you like me to also include a **GitHub-friendly architecture diagram description (ASCII format)** or a **Power BI visualization dashboard section** at the end of the README for your portfolio version?
-```
