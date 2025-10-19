@@ -21,7 +21,7 @@ The goal is to build a scalable, structured system for data ingestion, transform
 The data architecture for this project follows three Architectural Layers **Raw**, **Staging**, and **Modelling** layers
 ![Data Architecture](docs/data_architechture.png)
 
-1. **Raw Layer**: Stores raw data as-is from the source systems. Data is ingested from CSV Files into SQL Server Database.
+1. **Raw Layer**: Stores raw data as-is from the source systems. Data is ingested from CSV Files into MySQL Database.
 2. **Staging Layer**: This layer includes data cleansing, standardization, and normalization processes to prepare data for analysis.
 3. **Modelling Layer**: Houses business-ready data modeled into a star schema required for reporting and analytics.
 
